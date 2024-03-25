@@ -1,7 +1,6 @@
 import Mathlib
 
 set_option autoImplicit false
--- set_option pp.numericTypes true
 
 open Classical Real MeasureTheory
 
@@ -11,11 +10,7 @@ def pp (_ : Measure Ω) (N : ℕ) := Fin N → Ω
 
 instance : MeasurableSpace (pp μ N) := MeasurableSpace.pi
 
--- axiom cheat {f : pp μ N → ℕ} : StronglyMeasurable f
-
 noncomputable instance : MeasureSpace (pp μ N) := ⟨Measure.pi (fun _ => μ)⟩
-
--- instance : SigmaFinite μ := by infer_instance
 
 instance : IsProbabilityMeasure (volume : Measure (pp μ N)) := by
   constructor ; simp [volume] ; rw [Measure.pi_univ] ; simp
